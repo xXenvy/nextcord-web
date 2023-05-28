@@ -48,7 +48,7 @@ class HTTPClient:
             bot: Client,
             secret_key: str,
             api_version: API_VERSION = 10,
-            host: str = "localhost",
+            host: str = "127.0.0.1",
             port: int = 9000) -> None:
 
         if api_version not in (9, 10):
@@ -59,11 +59,17 @@ class HTTPClient:
         self._base_url: str = Discord.BASE_URL.value.format(api_version)
         self._bot: Client = bot
         self._api_version: API_VERSION = api_version
-        self.Route: Type[Route] = Route
 
+        self.Route: Type[Route] = Route
         self.host: str = host
         self.port: int = port
 
 
+class WebResponse:
 
+    def __init__(self, data: dict):
+        for key, value in data.items():
+            setattr(self, key, value)
 
+    def __repr__(self):
+        return "<WebResponse>"

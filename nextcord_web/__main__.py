@@ -1,11 +1,11 @@
 import sys
 import argparse
 
-from web import WebClient
+from .http import HTTPClient
 
 
 def version() -> None:
-    print(WebClient.__version__)
+    print(HTTPClient.__version__)
 
 
 def parse_args() -> argparse.Namespace:
